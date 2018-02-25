@@ -1,0 +1,10 @@
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\bin\Debug\ResWebsite.DAL.dll.config
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\bin\Debug\ResWebsite.DAL.dll
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\bin\Debug\ResWebsite.DAL.pdb
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\bin\Debug\EntityFramework.dll
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\bin\Debug\EntityFramework.xml
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\obj\Debug\ResWebsite.DAL.csprojResolveAssemblyReference.cache
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\obj\Debug\ResWebsite.DAL.dll
+D:\ASP-NET\ResWebsite\ResWebsite.DAL\obj\Debug\ResWebsite.DAL.pdb

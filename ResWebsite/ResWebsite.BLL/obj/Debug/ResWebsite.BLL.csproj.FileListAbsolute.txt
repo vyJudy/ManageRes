@@ -1,0 +1,9 @@
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\bin\Debug\ResWebsite.BLL.dll
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\bin\Debug\ResWebsite.BLL.pdb
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\bin\Debug\ResWebsite.DAL.dll
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\bin\Debug\EntityFramework.dll
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\bin\Debug\ResWebsite.DAL.pdb
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\bin\Debug\EntityFramework.xml
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\obj\Debug\ResWebsite.BLL.csprojResolveAssemblyReference.cache
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\obj\Debug\ResWebsite.BLL.dll
+D:\ASP-NET\ResWebsite\ResWebsite.BLL\obj\Debug\ResWebsite.BLL.pdb

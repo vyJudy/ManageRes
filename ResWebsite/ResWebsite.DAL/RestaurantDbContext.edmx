@@ -1,0 +1,1386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ManageRestaurantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Blocked" Type="bit" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CateID" />
+          </Key>
+          <Property Name="CateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descriptions" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ContractItemDetail">
+          <Key>
+            <PropertyRef Name="ContractDetailID" />
+          </Key>
+          <Property Name="ContractDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractID" Type="int" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="ContractMealDetail">
+          <Key>
+            <PropertyRef Name="ContractMealDetailID" />
+          </Key>
+          <Property Name="ContractMealDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractID" Type="int" />
+          <Property Name="Meal" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractType" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="TotalPrice" Type="money" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ExpireDate" Type="datetime" />
+          <Property Name="EffectDate" Type="date" />
+          <Property Name="EffectTime" Type="varchar" MaxLength="10" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="ContractServiceDetail">
+          <Key>
+            <PropertyRef Name="ContractServiceDetailID" />
+          </Key>
+          <Property Name="ContractServiceDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractID" Type="int" />
+          <Property Name="ServiceID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CustomerPhone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="BirthDay" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Picture" Type="varchar" MaxLength="200" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="IESupplies">
+          <Key>
+            <PropertyRef Name="TransID" />
+          </Key>
+          <Property Name="TransID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplyID" Type="int" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" />
+          <Property Name="Supplier" Type="int" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="ImportMaterial">
+          <Key>
+            <PropertyRef Name="ImportID" />
+          </Key>
+          <Property Name="ImportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialsName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="money" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="ImportDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="bigint" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="Meals">
+          <Key>
+            <PropertyRef Name="MealID" />
+          </Key>
+          <Property Name="MealID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MealName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Picture" Type="varchar" MaxLength="200" />
+          <Property Name="CateID" Type="int" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" />
+          <Property Name="PlaceID" Type="int" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="Total" Type="money" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderdetailID" />
+          </Key>
+          <Property Name="OrderdetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="MealID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="Places">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlaceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Picture" Type="varchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ServiceAddition">
+          <Key>
+            <PropertyRef Name="ServiceAddID" />
+          </Key>
+          <Property Name="ServiceAddID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="money" />
+          <Property Name="ServiceType" Type="nvarchar" MaxLength="500" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Accounts__Userna__73BA3083">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractI__Contr__40058253">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="ContractItemDetail" Type="Self.ContractItemDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ContractItemDetail">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractI__ItemI__40F9A68C">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="ContractItemDetail" Type="Self.ContractItemDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="ContractItemDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractM__Contr__45BE5BA9">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="ContractMealDetail" Type="Self.ContractMealDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ContractMealDetail">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractMe__Meal__46B27FE2">
+          <End Role="Meals" Type="Self.Meals" Multiplicity="0..1" />
+          <End Role="ContractMealDetail" Type="Self.ContractMealDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="MealID" />
+            </Principal>
+            <Dependent Role="ContractMealDetail">
+              <PropertyRef Name="Meal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractS__Contr__671F4F74">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="ContractServiceDetail" Type="Self.ContractServiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ContractServiceDetail">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Custo__3A4CA8FD">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Place__3B40CD36">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractS__Servi__681373AD">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="ContractServiceDetail" Type="Self.ContractServiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="ContractServiceDetail">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IESupplie__Emplo__2DE6D218">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="IESupplies" Type="Self.IESupplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="IESupplies">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IESupplie__Suppl__2CF2ADDF">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="IESupplies" Type="Self.IESupplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="IESupplies">
+              <PropertyRef Name="SupplyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IESupplie__Suppl__2EDAF651">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="IESupplies" Type="Self.IESupplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="IESupplies">
+              <PropertyRef Name="Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportMat__Emplo__339FAB6E">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ImportMaterial" Type="Self.ImportMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="ImportMaterial">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportMat__Suppl__3493CFA7">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="ImportMaterial" Type="Self.ImportMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="ImportMaterial">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Meals__CateID__151B244E">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Meals" Type="Self.Meals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CateID" />
+            </Principal>
+            <Dependent Role="Meals">
+              <PropertyRef Name="CateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__EmployeeI__2180FB33">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__PlaceID__22751F6C">
+          <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__MealI__282DF8C2">
+          <End Role="Meals" Type="Self.Meals" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="MealID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__2739D489">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceAd__Contr__55009F39">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="0..1" />
+          <End Role="ServiceAddition" Type="Self.ServiceAddition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ServiceAddition">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ManageRestaurantModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContractItemDetail" EntityType="Self.ContractItemDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContractMealDetail" EntityType="Self.ContractMealDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContractServiceDetail" EntityType="Self.ContractServiceDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IESupplies" EntityType="Self.IESupplies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportMaterial" EntityType="Self.ImportMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meals" EntityType="Self.Meals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceAddition" EntityType="Self.ServiceAddition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Accounts__Userna__73BA3083" Association="Self.FK__Accounts__Userna__73BA3083">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractI__Contr__40058253" Association="Self.FK__ContractI__Contr__40058253">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ContractItemDetail" EntitySet="ContractItemDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractI__ItemI__40F9A68C" Association="Self.FK__ContractI__ItemI__40F9A68C">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="ContractItemDetail" EntitySet="ContractItemDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractM__Contr__45BE5BA9" Association="Self.FK__ContractM__Contr__45BE5BA9">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ContractMealDetail" EntitySet="ContractMealDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractMe__Meal__46B27FE2" Association="Self.FK__ContractMe__Meal__46B27FE2">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="ContractMealDetail" EntitySet="ContractMealDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractS__Contr__671F4F74" Association="Self.FK__ContractS__Contr__671F4F74">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ContractServiceDetail" EntitySet="ContractServiceDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Custo__3A4CA8FD" Association="Self.FK__Contracts__Custo__3A4CA8FD">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Place__3B40CD36" Association="Self.FK__Contracts__Place__3B40CD36">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractS__Servi__681373AD" Association="Self.FK__ContractS__Servi__681373AD">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ContractServiceDetail" EntitySet="ContractServiceDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IESupplie__Emplo__2DE6D218" Association="Self.FK__IESupplie__Emplo__2DE6D218">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="IESupplies" EntitySet="IESupplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IESupplie__Suppl__2CF2ADDF" Association="Self.FK__IESupplie__Suppl__2CF2ADDF">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IESupplies" EntitySet="IESupplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IESupplie__Suppl__2EDAF651" Association="Self.FK__IESupplie__Suppl__2EDAF651">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="IESupplies" EntitySet="IESupplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportMat__Emplo__339FAB6E" Association="Self.FK__ImportMat__Emplo__339FAB6E">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ImportMaterial" EntitySet="ImportMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportMat__Suppl__3493CFA7" Association="Self.FK__ImportMat__Suppl__3493CFA7">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="ImportMaterial" EntitySet="ImportMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Meals__CateID__151B244E" Association="Self.FK__Meals__CateID__151B244E">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Meals" EntitySet="Meals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__EmployeeI__2180FB33" Association="Self.FK__Order__EmployeeI__2180FB33">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__PlaceID__22751F6C" Association="Self.FK__Order__PlaceID__22751F6C">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__MealI__282DF8C2" Association="Self.FK__OrderDeta__MealI__282DF8C2">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__2739D489" Association="Self.FK__OrderDeta__Order__2739D489">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceAd__Contr__55009F39" Association="Self.FK__ServiceAd__Contr__55009F39">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ServiceAddition" EntitySet="ServiceAddition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ManageRestaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Blocked" Type="Boolean" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Accounts__Userna__73BA3083" FromRole="Accounts" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CateID" />
+          </Key>
+          <Property Name="CateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Meals" Relationship="Self.FK__Meals__CateID__151B244E" FromRole="Categories" ToRole="Meals" />
+        </EntityType>
+        <EntityType Name="ContractItemDetail">
+          <Key>
+            <PropertyRef Name="ContractDetailID" />
+          </Key>
+          <Property Name="ContractDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractID" Type="Int32" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK__ContractI__Contr__40058253" FromRole="ContractItemDetail" ToRole="Contracts" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__ContractI__ItemI__40F9A68C" FromRole="ContractItemDetail" ToRole="Items" />
+        </EntityType>
+        <EntityType Name="ContractMealDetail">
+          <Key>
+            <PropertyRef Name="ContractMealDetailID" />
+          </Key>
+          <Property Name="ContractMealDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractID" Type="Int32" />
+          <Property Name="Meal" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK__ContractM__Contr__45BE5BA9" FromRole="ContractMealDetail" ToRole="Contracts" />
+          <NavigationProperty Name="Meal1" Relationship="Self.FK__ContractMe__Meal__46B27FE2" FromRole="ContractMealDetail" ToRole="Meals" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="EffectDate" Type="DateTime" Precision="0" />
+          <Property Name="EffectTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="ContractItemDetails" Relationship="Self.FK__ContractI__Contr__40058253" FromRole="Contracts" ToRole="ContractItemDetail" />
+          <NavigationProperty Name="ContractMealDetails" Relationship="Self.FK__ContractM__Contr__45BE5BA9" FromRole="Contracts" ToRole="ContractMealDetail" />
+          <NavigationProperty Name="ContractServiceDetails" Relationship="Self.FK__ContractS__Contr__671F4F74" FromRole="Contracts" ToRole="ContractServiceDetail" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Contracts__Custo__3A4CA8FD" FromRole="Contracts" ToRole="Customers" />
+          <NavigationProperty Name="Place" Relationship="Self.FK__Contracts__Place__3B40CD36" FromRole="Contracts" ToRole="Places" />
+          <NavigationProperty Name="ServiceAdditions" Relationship="Self.FK__ServiceAd__Contr__55009F39" FromRole="Contracts" ToRole="ServiceAddition" />
+        </EntityType>
+        <EntityType Name="ContractServiceDetail">
+          <Key>
+            <PropertyRef Name="ContractServiceDetailID" />
+          </Key>
+          <Property Name="ContractServiceDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractID" Type="Int32" />
+          <Property Name="ServiceID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK__ContractS__Contr__671F4F74" FromRole="ContractServiceDetail" ToRole="Contracts" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__ContractS__Servi__681373AD" FromRole="ContractServiceDetail" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK__Contracts__Custo__3A4CA8FD" FromRole="Customers" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="JobName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Accounts__Userna__73BA3083" FromRole="Employee" ToRole="Accounts" />
+          <NavigationProperty Name="IESupplies" Relationship="Self.FK__IESupplie__Emplo__2DE6D218" FromRole="Employee" ToRole="IESupplies" />
+          <NavigationProperty Name="ImportMaterials" Relationship="Self.FK__ImportMat__Emplo__339FAB6E" FromRole="Employee" ToRole="ImportMaterial" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Order__EmployeeI__2180FB33" FromRole="Employee" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="IESupply">
+          <Key>
+            <PropertyRef Name="TransID" />
+          </Key>
+          <Property Name="TransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplyID" Type="Int32" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier" Type="Int32" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__IESupplie__Emplo__2DE6D218" FromRole="IESupplies" ToRole="Employee" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__IESupplie__Suppl__2CF2ADDF" FromRole="IESupplies" ToRole="Items" />
+          <NavigationProperty Name="Supplier1" Relationship="Self.FK__IESupplie__Suppl__2EDAF651" FromRole="IESupplies" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="ImportMaterial">
+          <Key>
+            <PropertyRef Name="ImportID" />
+          </Key>
+          <Property Name="ImportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialsName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="ImportDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__ImportMat__Emplo__339FAB6E" FromRole="ImportMaterial" ToRole="Employee" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__ImportMat__Suppl__3493CFA7" FromRole="ImportMaterial" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int64" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="ContractItemDetails" Relationship="Self.FK__ContractI__ItemI__40F9A68C" FromRole="Items" ToRole="ContractItemDetail" />
+          <NavigationProperty Name="IESupplies" Relationship="Self.FK__IESupplie__Suppl__2CF2ADDF" FromRole="Items" ToRole="IESupplies" />
+        </EntityType>
+        <EntityType Name="Meal">
+          <Key>
+            <PropertyRef Name="MealID" />
+          </Key>
+          <Property Name="MealID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MealName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CateID" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Meals__CateID__151B244E" FromRole="Meals" ToRole="Categories" />
+          <NavigationProperty Name="ContractMealDetails" Relationship="Self.FK__ContractMe__Meal__46B27FE2" FromRole="Meals" ToRole="ContractMealDetail" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__MealI__282DF8C2" FromRole="Meals" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlaceID" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Order__EmployeeI__2180FB33" FromRole="Order" ToRole="Employee" />
+          <NavigationProperty Name="Place" Relationship="Self.FK__Order__PlaceID__22751F6C" FromRole="Order" ToRole="Places" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__2739D489" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderdetailID" />
+          </Key>
+          <Property Name="OrderdetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="MealID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Meal" Relationship="Self.FK__OrderDeta__MealI__282DF8C2" FromRole="OrderDetail" ToRole="Meals" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__2739D489" FromRole="OrderDetail" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK__Contracts__Place__3B40CD36" FromRole="Places" ToRole="Contracts" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Order__PlaceID__22751F6C" FromRole="Places" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="ServiceAddition">
+          <Key>
+            <PropertyRef Name="ServiceAddID" />
+          </Key>
+          <Property Name="ServiceAddID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK__ServiceAd__Contr__55009F39" FromRole="ServiceAddition" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ServiceType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="ContractServiceDetails" Relationship="Self.FK__ContractS__Servi__681373AD" FromRole="Services" ToRole="ContractServiceDetail" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="IESupplies" Relationship="Self.FK__IESupplie__Suppl__2EDAF651" FromRole="Supplier" ToRole="IESupplies" />
+          <NavigationProperty Name="ImportMaterials" Relationship="Self.FK__ImportMat__Suppl__3493CFA7" FromRole="Supplier" ToRole="ImportMaterial" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Accounts__Userna__73BA3083">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Meals__CateID__151B244E">
+          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Meals" Type="Self.Meal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CateID" />
+            </Principal>
+            <Dependent Role="Meals">
+              <PropertyRef Name="CateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractI__Contr__40058253">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="ContractItemDetail" Type="Self.ContractItemDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ContractItemDetail">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractI__ItemI__40F9A68C">
+          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="ContractItemDetail" Type="Self.ContractItemDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="ContractItemDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractM__Contr__45BE5BA9">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="ContractMealDetail" Type="Self.ContractMealDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ContractMealDetail">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractMe__Meal__46B27FE2">
+          <End Role="Meals" Type="Self.Meal" Multiplicity="0..1" />
+          <End Role="ContractMealDetail" Type="Self.ContractMealDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="MealID" />
+            </Principal>
+            <Dependent Role="ContractMealDetail">
+              <PropertyRef Name="Meal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractS__Contr__671F4F74">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="ContractServiceDetail" Type="Self.ContractServiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ContractServiceDetail">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Custo__3A4CA8FD">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Place__3B40CD36">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceAd__Contr__55009F39">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="ServiceAddition" Type="Self.ServiceAddition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="ContractID" />
+            </Principal>
+            <Dependent Role="ServiceAddition">
+              <PropertyRef Name="ContractID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ContractS__Servi__681373AD">
+          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="ContractServiceDetail" Type="Self.ContractServiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="ContractServiceDetail">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IESupplie__Emplo__2DE6D218">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="IESupplies" Type="Self.IESupply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="IESupplies">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportMat__Emplo__339FAB6E">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ImportMaterial" Type="Self.ImportMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="ImportMaterial">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__EmployeeI__2180FB33">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IESupplie__Suppl__2CF2ADDF">
+          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="IESupplies" Type="Self.IESupply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="IESupplies">
+              <PropertyRef Name="SupplyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IESupplie__Suppl__2EDAF651">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="IESupplies" Type="Self.IESupply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="IESupplies">
+              <PropertyRef Name="Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportMat__Suppl__3493CFA7">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="ImportMaterial" Type="Self.ImportMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="ImportMaterial">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__MealI__282DF8C2">
+          <End Role="Meals" Type="Self.Meal" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="MealID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__PlaceID__22751F6C">
+          <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__2739D489">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ManageRestaurantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="ContractItemDetails" EntityType="Self.ContractItemDetail" />
+          <EntitySet Name="ContractMealDetails" EntityType="Self.ContractMealDetail" />
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="ContractServiceDetails" EntityType="Self.ContractServiceDetail" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="IESupplies" EntityType="Self.IESupply" />
+          <EntitySet Name="ImportMaterials" EntityType="Self.ImportMaterial" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Meals" EntityType="Self.Meal" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <EntitySet Name="ServiceAdditions" EntityType="Self.ServiceAddition" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK__Accounts__Userna__73BA3083" Association="Self.FK__Accounts__Userna__73BA3083">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Meals__CateID__151B244E" Association="Self.FK__Meals__CateID__151B244E">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Meals" EntitySet="Meals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractI__Contr__40058253" Association="Self.FK__ContractI__Contr__40058253">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ContractItemDetail" EntitySet="ContractItemDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractI__ItemI__40F9A68C" Association="Self.FK__ContractI__ItemI__40F9A68C">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="ContractItemDetail" EntitySet="ContractItemDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractM__Contr__45BE5BA9" Association="Self.FK__ContractM__Contr__45BE5BA9">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ContractMealDetail" EntitySet="ContractMealDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractMe__Meal__46B27FE2" Association="Self.FK__ContractMe__Meal__46B27FE2">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="ContractMealDetail" EntitySet="ContractMealDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractS__Contr__671F4F74" Association="Self.FK__ContractS__Contr__671F4F74">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ContractServiceDetail" EntitySet="ContractServiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Custo__3A4CA8FD" Association="Self.FK__Contracts__Custo__3A4CA8FD">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Place__3B40CD36" Association="Self.FK__Contracts__Place__3B40CD36">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceAd__Contr__55009F39" Association="Self.FK__ServiceAd__Contr__55009F39">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="ServiceAddition" EntitySet="ServiceAdditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ContractS__Servi__681373AD" Association="Self.FK__ContractS__Servi__681373AD">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ContractServiceDetail" EntitySet="ContractServiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IESupplie__Emplo__2DE6D218" Association="Self.FK__IESupplie__Emplo__2DE6D218">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="IESupplies" EntitySet="IESupplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportMat__Emplo__339FAB6E" Association="Self.FK__ImportMat__Emplo__339FAB6E">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ImportMaterial" EntitySet="ImportMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__EmployeeI__2180FB33" Association="Self.FK__Order__EmployeeI__2180FB33">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IESupplie__Suppl__2CF2ADDF" Association="Self.FK__IESupplie__Suppl__2CF2ADDF">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IESupplies" EntitySet="IESupplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IESupplie__Suppl__2EDAF651" Association="Self.FK__IESupplie__Suppl__2EDAF651">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="IESupplies" EntitySet="IESupplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportMat__Suppl__3493CFA7" Association="Self.FK__ImportMat__Suppl__3493CFA7">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="ImportMaterial" EntitySet="ImportMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__MealI__282DF8C2" Association="Self.FK__OrderDeta__MealI__282DF8C2">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__PlaceID__22751F6C" Association="Self.FK__Order__PlaceID__22751F6C">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__2739D489" Association="Self.FK__OrderDeta__Order__2739D489">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ManageRestaurantModelStoreContainer" CdmEntityContainer="ManageRestaurantEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractItemDetails">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.ContractItemDetail">
+              <MappingFragment StoreEntitySet="ContractItemDetail">
+                <ScalarProperty Name="ContractDetailID" ColumnName="ContractDetailID" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractMealDetails">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.ContractMealDetail">
+              <MappingFragment StoreEntitySet="ContractMealDetail">
+                <ScalarProperty Name="ContractMealDetailID" ColumnName="ContractMealDetailID" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="Meal" ColumnName="Meal" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Contract">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="EffectDate" ColumnName="EffectDate" />
+                <ScalarProperty Name="EffectTime" ColumnName="EffectTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractServiceDetails">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.ContractServiceDetail">
+              <MappingFragment StoreEntitySet="ContractServiceDetail">
+                <ScalarProperty Name="ContractServiceDetailID" ColumnName="ContractServiceDetailID" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IESupplies">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.IESupply">
+              <MappingFragment StoreEntitySet="IESupplies">
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+                <ScalarProperty Name="SupplyID" ColumnName="SupplyID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImportMaterials">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.ImportMaterial">
+              <MappingFragment StoreEntitySet="ImportMaterial">
+                <ScalarProperty Name="ImportID" ColumnName="ImportID" />
+                <ScalarProperty Name="MaterialsName" ColumnName="MaterialsName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meals">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Meal">
+              <MappingFragment StoreEntitySet="Meals">
+                <ScalarProperty Name="MealID" ColumnName="MealID" />
+                <ScalarProperty Name="MealName" ColumnName="MealName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="OrderdetailID" ColumnName="OrderdetailID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MealID" ColumnName="MealID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Place">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="PlaceName" ColumnName="PlaceName" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceAdditions">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.ServiceAddition">
+              <MappingFragment StoreEntitySet="ServiceAddition">
+                <ScalarProperty Name="ServiceAddID" ColumnName="ServiceAddID" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ManageRestaurantModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

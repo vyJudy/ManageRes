@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a8d31fd0f49a44d29591f7388f5ffe80" Name="Diagram1">
+        <EntityTypeShape EntityType="ManageRestaurantModel.Account" Width="1.5" PointX="6" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Category" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.ContractItemDetail" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.ContractMealDetail" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Contract" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.ContractServiceDetail" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Customer" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Employee" Width="1.5" PointX="3.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.IESupply" Width="1.5" PointX="8.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.ImportMaterial" Width="1.5" PointX="6" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Item" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Meal" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Order" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.OrderDetail" Width="1.5" PointX="11.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Place" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.ServiceAddition" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Service" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.Supplier" Width="1.5" PointX="6" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageRestaurantModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__Accounts__Userna__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__Meals__CateID__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ContractI__Contr__40058253" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ContractI__ItemI__40F9A68C" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ContractM__Contr__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ContractMe__Meal__46B27FE2" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ContractS__Contr__671F4F74" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__Contracts__Custo__3A4CA8FD" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__Contracts__Place__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ServiceAd__Contr__55009F39" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ContractS__Servi__681373AD" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__IESupplie__Emplo__2DE6D218" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ImportMat__Emplo__339FAB6E" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__Order__EmployeeI__2180FB33" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__IESupplie__Suppl__2CF2ADDF" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__IESupplie__Suppl__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__ImportMat__Suppl__3493CFA7" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__OrderDeta__MealI__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__Order__PlaceID__22751F6C" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageRestaurantModel.FK__OrderDeta__Order__2739D489" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
